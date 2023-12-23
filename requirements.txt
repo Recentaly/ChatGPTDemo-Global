@@ -1,0 +1,9 @@
+flask
+flask_cors
+flask_cloudflared
+fake_useragent
+secrets
+string
+json
+logging
+requests
