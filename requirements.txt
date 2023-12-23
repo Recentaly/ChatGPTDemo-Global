@@ -4,5 +4,4 @@ flask_cloudflared
 fake_useragent
 free-proxy
 secrets
-logging
 requests
