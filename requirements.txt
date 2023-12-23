@@ -2,6 +2,7 @@ flask
 flask_cors
 flask_cloudflared
 fake_useragent
+free-proxy
 secrets
 string
 json
