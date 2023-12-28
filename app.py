@@ -4,6 +4,9 @@
 from flask import Flask, request, Response, jsonify
 from flask_cors import CORS # to allow cross-origin requests
 
+# module to run server globally
+from flask_cloudflared import run_with_cloudflared
+
 # modules to interact with the API
 import assets.scripts.api as Api
 
@@ -14,6 +17,9 @@ import json
 
 # initialize the flask app
 app = Flask(__name__)
+
+# run app globally
+run_with_cloudflared(app)
 
 # allow cross-origin requests
 CORS(app)
