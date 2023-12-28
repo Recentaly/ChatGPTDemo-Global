@@ -10,16 +10,10 @@ import assets.scripts.api as Api
 # json module to load strings to json
 import json
 
-# module to globally host the server
-from flask_cloudflared import run_with_cloudflared
-
 # ------------------------------  SERVER SETUP ------------------------------ #
 
 # initialize the flask app
 app = Flask(__name__)
-
-# run the server with cloudflare
-run_with_cloudflared(app)
 
 # allow cross-origin requests
 CORS(app)
@@ -51,6 +45,22 @@ def chat_completion():
 
     # get the messages
     messages = data["messages"]
+
+    # check if messages has a system message
+    if messages[0]["role"] == "system":
+
+        # enable system messages in ai
+        api.get_system_message(messages)
+
+    # try applying the assistants first message
+    try:
+
+        api.apply_assistant_first(messages)
+
+    except KeyError:
+
+        # we can pass this one
+        pass
 
     # this function handles streaming
     def stream():
